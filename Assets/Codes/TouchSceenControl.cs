@@ -21,45 +21,13 @@ public class TouchSceenControl : MonoBehaviour
         {
             OnTouchRelease();
         }
-        //if (Input.GetMouseButton(0))
-        //{
-        //    if (!touchedObjOnThisClick)
-        //    {
-        //        Ray raycast = mainCam.ScreenPointToRay(Input.mousePosition);
-        //        if (Physics.Raycast(raycast.origin, raycast.direction * 10, out RaycastHit hit, 5.4f))
-        //        {
-        //            touchedObjOnThisClick = true;
-        //            if (hit.transform.gameObject.CompareTag("Player"))
-        //            {
-        //                hit.transform.gameObject.SendMessageUpwards("ButtonAction");
-        //            }
-        //            else if (hit.transform.gameObject.CompareTag("Walkable"))
-        //            {
-        //                fpswalk.positionToGo = hit.transform.position;
-        //            }
-        //            else if (inputTouch.phase == TouchPhase.Moved)
-        //            {
-        //                if (Mathf.Abs(inputTouch.deltaPosition.x) + Mathf.Abs(inputTouch.deltaPosition.y) > 5 || inputTouch.deltaTime > 0.5f)
-        //                {
-        //                    Vector3 neckmov = new Vector3(inputTouch.deltaPosition.y, 0, 0);
-        //                    transform.Rotate(neckmov);
-        //                    Vector3 bodymov = new Vector3(0, inputTouch.deltaPosition.x, 0);
-        //                    transform.parent.Rotate(bodymov);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    touchedObjOnThisClick = false;
-        //}
     }
     private void OnTouchPress()
     {
         if (onTouch == null && drag == null)
         {
             onTouch = StartCoroutine(OnTouch());
+            Debug.Log("StartTouch");
         }
     }
     private void OnTouchRelease()
@@ -70,7 +38,7 @@ public class TouchSceenControl : MonoBehaviour
             onTouch = null;
             Click();
         }
-        else
+        else if (drag != null)
         {
             DragStop();
         }
@@ -78,12 +46,12 @@ public class TouchSceenControl : MonoBehaviour
     private Coroutine onTouch;
     private IEnumerator OnTouch()
     {
-        Vector2 startPosition = Input.mousePosition;
+        Vector2 startPosition = Input.touches[0].position;
         Vector2 deltaPosition;
         float timer = 0;
         while (timer < 0.5f)
         {
-            deltaPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - startPosition;
+            deltaPosition = new Vector2(Input.touches[0].position.x, Input.touches[0].position.y) - startPosition;
             if (Mathf.Abs(deltaPosition.x) + Mathf.Abs(deltaPosition.y) > 50)
             {
                 break;
@@ -111,21 +79,21 @@ public class TouchSceenControl : MonoBehaviour
     private Coroutine drag;
     private IEnumerator Drag()
     {
-        Vector2 startPosition = Input.mousePosition;
+        Vector2 startPosition = Input.touches[0].position;
         while (true)
         {
-            Vector2 deltaPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - startPosition;
-            Vector3 neckmov = new Vector3(deltaPosition.y/5, 0, 0);
+            Vector2 deltaPosition = new Vector2(Input.touches[0].position.x, Input.touches[0].position.y) - startPosition;
+            Vector3 neckmov = new Vector3(-deltaPosition.y/5.5f, 0, 0);
             transform.Rotate(neckmov);
-            Vector3 bodymov = new Vector3(0, -deltaPosition.x/5, 0);
+            Vector3 bodymov = new Vector3(0, deltaPosition.x/ 5.5f, 0);
             transform.parent.Rotate(bodymov);
-            startPosition = Input.mousePosition;
+            startPosition = Input.touches[0].position;
             yield return null;
         }
     }
     private void Click()
     {
-        Ray raycast = mainCam.ScreenPointToRay(Input.mousePosition);
+        Ray raycast = mainCam.ScreenPointToRay(Input.touches[0].position);
         if (Physics.Raycast(raycast.origin, raycast.direction * 10, out RaycastHit hit, 5.65f))
         {
             touchedObjOnThisClick = true;

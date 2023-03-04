@@ -46,7 +46,7 @@ public class MoveCamPlayer : MonoBehaviour
                 StartCoroutine(JumpGhost());
                
 
-                Debug.Log ("acertou o player");
+               
             }
         }
 

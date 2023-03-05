@@ -8,22 +8,18 @@ public class GoGhost : MonoBehaviour
     BoxCollider m_boxCollider;
     float speed = 4f;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
         m_Rigidbody = GetComponent<Rigidbody>();
         m_boxCollider = GetComponent<BoxCollider>();
 
         m_Rigidbody.velocity = transform.forward * speed;
-
-
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         StartCoroutine(Freeze());
     }
+
 
     IEnumerator Freeze()
     {

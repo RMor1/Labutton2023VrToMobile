@@ -2676,6 +2676,8 @@ GameObject:
   - component: {fileID: 554112940}
   - component: {fileID: 554112942}
   - component: {fileID: 554112941}
+  - component: {fileID: 554112944}
+  - component: {fileID: 554112943}
   m_Layer: 5
   m_Name: GameOverTela
   m_TagString: Untagged
@@ -2742,6 +2744,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554112939}
   m_CullTransparentMesh: 1
+--- !u!114 &554112943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554112939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9aa6f19a167f247b39fefc29aa8eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &554112944
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554112939}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &562688516
 PrefabInstance:
   m_ObjectHideFlags: 0

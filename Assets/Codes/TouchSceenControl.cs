@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TouchSceenControl : MonoBehaviour
 {
+    public static TouchSceenControl Instance { get;private set; }
     [SerializeField] private FPSWalk fpswalk;
     private Camera mainCam;
     bool touchedObjOnThisClick;
     private void Awake()
     {
+        Instance= this;
         mainCam = Camera.main;
     }
     void Update()

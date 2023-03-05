@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class RayCastCanvas : MonoBehaviour
 {
     public RawImage imageBlood;
+    public Animator imageBloodAnim;
     private float alphaBg;
     [SerializeField] private Image bg;
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -27,12 +28,15 @@ public class RayCastCanvas : MonoBehaviour
             {
                 AlphaControl(true);
                 imageBlood.enabled = true;
-
+                imageBloodAnim.enabled = true;
+                
             }
             else
             {
                 AlphaControl(false);
                 imageBlood.enabled = false;
+                imageBloodAnim.enabled = false;
+                imageBloodAnim.Play("Anim-normal",0,0);
             }
         }
     }

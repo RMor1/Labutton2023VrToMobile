@@ -41,7 +41,7 @@ public class MoveCamPlayer : MonoBehaviour
 
                 Direction = (tar.position - player.transform.position).normalized;
                 Quaternion target = Quaternion.LookRotation(Direction);
-                player.transform.rotation = Quaternion.Slerp(transform.rotation, target, smooth).normalized;
+                player.transform.rotation= Quaternion.Slerp(transform.rotation , target, smooth).normalized;
 
                 StartCoroutine(JumpGhost());
                

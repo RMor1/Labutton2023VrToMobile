@@ -51,12 +51,13 @@ public class RayCastCanvas : MonoBehaviour
     {
         while (true)
         {
-            alphaBg += 0.002f;
+            alphaBg += 0.0015f;
             if (alphaBg >= 0.75f)
             {
                 alphaBg = 0.75f;
                 bg.color = new Color(0, 0, 0, 0.75f);
                 alphaCoroutine = null;
+                GameOverControl.Instance.TurnOnGameOverScreen();
                 yield break;
             }
             bg.color = new Color(0, 0, 0, alphaBg);

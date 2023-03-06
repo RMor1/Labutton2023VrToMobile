@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Activateghost: {fileID: 1050348535}
+  Activateghost2: {fileID: 0}
   tar: {fileID: 1050348536}
   player: {fileID: 39481001}
 --- !u!65 &204107131
@@ -1146,7 +1147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204107129}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.68, y: 1.25, z: 0.05}
+  m_LocalPosition: {x: -22.01, y: 1.25, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1733,8 +1734,8 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cda982cedb9aad84a92ec9e9d99aac74, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -5170,6 +5171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e9c45d05fe9e04bb2ec69a8e338a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 1050348535}
 --- !u!65 &1050348541
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,16 +7,16 @@ public class MoveCamPlayer : MonoBehaviour
 {
    
     public GameObject Activateghost;
+  
     public Transform tar;
     public GameObject player;
     private Transform Player;
-    float smooth = 1f;
+    //float smooth = 1f;
     Vector3 Direction;
 
-    void Start()
+    private void Awake()
     {
         Activateghost.SetActive(false);
-       
        
 
     }
@@ -24,7 +24,7 @@ public class MoveCamPlayer : MonoBehaviour
     void Update()
     {
         
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 32 ))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 64 ))
         {
             
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)* 32, Color.green);
@@ -41,7 +41,7 @@ public class MoveCamPlayer : MonoBehaviour
 
                 Direction = (tar.position - player.transform.position).normalized;
                 Quaternion target = Quaternion.LookRotation(Direction);
-                player.transform.rotation= Quaternion.Slerp(transform.rotation , target, smooth).normalized;
+                player.transform.rotation= Quaternion.Lerp(transform.rotation , target, Time.fixedDeltaTime * 50);
 
                 StartCoroutine(JumpGhost());
                
@@ -54,13 +54,9 @@ public class MoveCamPlayer : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
 
-            
             Activateghost.SetActive(true);
-            
-            //Correção para retorno do touch do player
 
-           /* Quaternion Player = Quaternion.LookRotation(Direction);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Player, 1f).normalized;*/
+
 
         }
     }  

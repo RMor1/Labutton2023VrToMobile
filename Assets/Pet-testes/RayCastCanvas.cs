@@ -9,13 +9,12 @@ public class RayCastCanvas : MonoBehaviour
     public Animator imageBloodAnim;
     private float alphaBg;
     [SerializeField] private Image bg;
-    // Start is called before the first frame update
+
     void Start()
     {
        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 6))
@@ -29,14 +28,14 @@ public class RayCastCanvas : MonoBehaviour
                 AlphaControl(true);
                 imageBlood.enabled = true;
                 imageBloodAnim.enabled = true;
-                
+                imageBloodAnim.SetBool("Volta", false);
+
             }
             else
             {
                 AlphaControl(false);
-                imageBlood.enabled = false;
-                imageBloodAnim.enabled = false;
-                imageBloodAnim.Play("Anim-normal",0,0);
+                imageBloodAnim.SetBool("Volta", true);
+                
             }
         }
     }
@@ -80,4 +79,5 @@ public class RayCastCanvas : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
 }

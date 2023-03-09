@@ -7,7 +7,6 @@ public class TouchSceenControl : MonoBehaviour
     public static TouchSceenControl Instance { get;private set; }
     [SerializeField] private FPSWalk fpswalk;
     private Camera mainCam;
-    bool touchedObjOnThisClick;
     private void Awake()
     {
         Instance= this;
@@ -98,7 +97,6 @@ public class TouchSceenControl : MonoBehaviour
         Ray raycast = mainCam.ScreenPointToRay(Input.touches[0].position);
         if (Physics.Raycast(raycast.origin, raycast.direction * 10, out RaycastHit hit, 5.65f))
         {
-            touchedObjOnThisClick = true;
             if (hit.transform.gameObject.CompareTag("Player"))
             {
                 hit.transform.gameObject.SendMessageUpwards("ButtonAction");

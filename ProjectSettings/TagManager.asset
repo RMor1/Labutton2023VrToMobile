@@ -7,6 +7,7 @@ TagManager:
   - Walkable
   - Teste
   - ghost
+  - Examinable
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - UI
   - 
   - jumpscare
-  - 
-  - 
+  - Focused
+  - PostProcess
   - 
   - 
   - 

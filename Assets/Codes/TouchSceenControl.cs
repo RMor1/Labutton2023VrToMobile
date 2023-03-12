@@ -105,6 +105,10 @@ public class TouchSceenControl : MonoBehaviour
             {
                 fpswalk.positionToGo = hit.transform.position;
             }
+            else if(hit.transform.gameObject.CompareTag("Examinable"))
+            {
+                ExamineItem.Instance.Examine(hit.transform.gameObject);
+            }
         }
     }
 }

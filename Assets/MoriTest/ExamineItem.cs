@@ -8,14 +8,31 @@ public class ExamineItem : MonoBehaviour
     public static ExamineItem Instance;
     [SerializeField] private GameObject postProcess;
     private Camera postProcessCam;
+    [SerializeField] private CanvasGroup hudCanvasGroup;
 
     private GameObject objectInspected;
     int originalLayer;
-    Vector3 originalRotation;
+    Quaternion originalRotation;
     private void Awake()
     {
         Instance = this;
         postProcessCam = postProcess.GetComponent<Camera>();
+    }
+    public void ExitExamine()
+    {
+        objectInspected.transform.rotation = originalRotation;
+        objectInspected.layer = originalLayer;
+
+        hudCanvasGroup.alpha = 0;
+        hudCanvasGroup.interactable = false;
+        hudCanvasGroup.blocksRaycasts = false;
+
+        postProcess.SetActive(false);
+
+        TouchSceenControl.Instance.enabled = true;
+        StopAllCoroutines();
+
+
     }
     public void Examine(GameObject objectToBeInspected)
     {
@@ -24,9 +41,13 @@ public class ExamineItem : MonoBehaviour
         objectInspected = objectToBeInspected;
         Vector3 direction = (objectToBeInspected.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(direction);
+        originalRotation = objectToBeInspected.transform.rotation;
         originalLayer = objectToBeInspected.layer;
         objectToBeInspected.layer = LayerMask.NameToLayer("Focused");
         postProcess.SetActive(true);
+        hudCanvasGroup.alpha= 1;
+        hudCanvasGroup.interactable= true;
+        hudCanvasGroup.blocksRaycasts= true;
         StartCoroutine(ExamineItemsInputDetection());
     }
 

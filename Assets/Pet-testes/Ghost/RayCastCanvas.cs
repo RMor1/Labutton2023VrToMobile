@@ -22,6 +22,7 @@ public class RayCastCanvas : MonoBehaviour
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 
+            
 
             if (hit.transform.gameObject.CompareTag("ghost"))
             {

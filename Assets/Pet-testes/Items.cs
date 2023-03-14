@@ -9,8 +9,12 @@ using System;
 
 public class Items : ScriptableObject
 {
-    public static Items Instance;
-
+    public enum ItemTypes
+    {
+        Key,Crowbar,Paper
+    }
+    public ItemTypes objectType;
+    public String objectName;
     public Sprite ImageItem;
    
 

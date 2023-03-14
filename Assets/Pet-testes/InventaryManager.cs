@@ -42,7 +42,7 @@ public class InventaryManager : MonoBehaviour
             GameObject obj = Instantiate(InventoryItem, ItemContent);
            var ImageItems = obj.transform.Find("ImageItem").GetComponent<Image>();
 
-           ImageItems.sprite = Items.Instance.ImageItem; // errado - verificar dps
+            ImageItems.sprite = slots.ImageItem; // errado - verificar dps
         }
     }
 }

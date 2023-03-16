@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class WoodenPlank : MonoBehaviour
 {
@@ -12,7 +11,14 @@ public class WoodenPlank : MonoBehaviour
     }
     public void ButtonAction()
     {
-        rb.constraints = RigidbodyConstraints.None;
-        rb.angularVelocity += new Vector3(1, 1, 1);
+        foreach(Items itemInInventory in InventaryManager.Instance.itens)
+        {
+            if(itemInInventory.objectType.Equals(Items.ItemTypes.Crowbar))
+            {
+                rb.constraints = RigidbodyConstraints.None;
+                rb.angularVelocity += new Vector3(1, 1, 1);
+                break;
+            }
+        }
     }
 }

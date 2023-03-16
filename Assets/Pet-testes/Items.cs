@@ -21,14 +21,8 @@ public class Items : ScriptableObject
     {
         switch (objectType)
         {
-            case ItemTypes.Key:
-                Debug.Log("Chave usou");
-                break;
-            case ItemTypes.Crowbar:
-                Debug.Log("Crowbar usou");
-                break;
             case ItemTypes.Paper:
-                Debug.Log("Paper usou");
+                PaperCanvas.Instance.SwitchOnOff();
                 break;
         }
     }

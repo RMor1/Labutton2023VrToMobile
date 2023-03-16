@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -11,18 +12,27 @@ public class InventaryManager : MonoBehaviour
     public List<Items> itens = new List<Items>();
 
     [SerializeField] private Transform inventoryHUDParent;
+    [SerializeField] private TextMeshProUGUI textUI;
 
 
     private void Awake()
     {
         Instance = this;
     }
-
     public void Add(Items itemToBeAdded)
     {
         itens.Add(itemToBeAdded);
+
+        textUI.text = itemToBeAdded.objectName + " Obtained";
+        textUI.enabled = true;
+        Invoke("DisableTextUI", 2);
         ListItens();
 
+    }
+
+    private void DisableTextUI()
+    {
+        textUI.enabled = false;
     }
 
     /*public void Remove(Items slots)
@@ -48,9 +58,7 @@ public class InventaryManager : MonoBehaviour
             GameObject slotToBeActivated = inventoryHUDParent.GetChild(activeItensInHud).gameObject;
             Image hudImage = slotToBeActivated.transform.GetChild(0).GetComponent<Image>();
             hudImage.sprite = itens[activeItensInHud].ImageItem;
-            hudImage.SetNativeSize();
             slotToBeActivated.GetComponent<Button>().onClick.AddListener(itens[activeItensInHud].UseItem);
-            Debug.Log(activeItensInHud);
             slotToBeActivated.SetActive(true);
         }
     }

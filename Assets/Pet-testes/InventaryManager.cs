@@ -10,19 +10,19 @@ public class InventaryManager : MonoBehaviour
     public static InventaryManager Instance;
     public List<Items> itens = new List<Items>();
 
-    public Transform ItemContent;
-    public GameObject InventoryItem;
-    public Items script;
-  
+    [SerializeField] private Transform inventoryHUDParent;
+
 
     private void Awake()
     {
         Instance = this;
     }
- 
-    public void Add(Items slots)
+
+    public void Add(Items itemToBeAdded)
     {
-        itens.Add(slots);
+        itens.Add(itemToBeAdded);
+        ListItens();
+
     }
 
     /*public void Remove(Items slots)
@@ -32,17 +32,26 @@ public class InventaryManager : MonoBehaviour
 
     public void ListItens()
     {
-        foreach(Transform slots in ItemContent)
+        //Metodo de seguranca para garantir que o inventario so sera alterado se a quantidade de itens for alterada
+        int activeItensInHud = 0;
+        for (int i = 0; i < inventoryHUDParent.childCount; i++)
         {
-            Destroy(slots.gameObject);
+            if (inventoryHUDParent.GetChild(i).gameObject.activeSelf)
+            {
+                activeItensInHud++;
+            }
+            else break;
         }
-
-        foreach(var slots in itens)
+        // Se caso estiver mais itens no inventario a mais q itens no menu, ele modifica a image e adiciona a funcao "Use Item" qnd vc clica no button
+        if(itens.Count>activeItensInHud)
         {
-            GameObject obj = Instantiate(InventoryItem, ItemContent);
-           var ImageItems = obj.transform.Find("ImageItem").GetComponent<Image>();
-
-            ImageItems.sprite = slots.ImageItem; // errado - verificar dps
+            GameObject slotToBeActivated = inventoryHUDParent.GetChild(activeItensInHud).gameObject;
+            Image hudImage = slotToBeActivated.transform.GetChild(0).GetComponent<Image>();
+            hudImage.sprite = itens[activeItensInHud].ImageItem;
+            hudImage.SetNativeSize();
+            slotToBeActivated.GetComponent<Button>().onClick.AddListener(itens[activeItensInHud].UseItem);
+            Debug.Log(activeItensInHud);
+            slotToBeActivated.SetActive(true);
         }
     }
 }

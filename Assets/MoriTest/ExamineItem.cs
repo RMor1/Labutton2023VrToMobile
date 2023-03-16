@@ -44,6 +44,7 @@ public class ExamineItem : MonoBehaviour
         originalRotation = objectToBeInspected.transform.rotation;
         originalLayer = objectToBeInspected.layer;
         objectToBeInspected.layer = LayerMask.NameToLayer("Focused");
+        postProcessCam.nearClipPlane = Vector3.Distance(transform.position, objectInspected.transform.position) / 4.23f;
         postProcess.SetActive(true);
         hudCanvasGroup.alpha= 1;
         hudCanvasGroup.interactable= true;

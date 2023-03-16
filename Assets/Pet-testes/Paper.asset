@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c935676d06b86e4a87ec761776c671d, type: 3}
-  m_Name: item2
+  m_Name: Paper
   m_EditorClassIdentifier: 
-  ImageItem: {fileID: 21300000, guid: a703ece5257bd3f4a892e08b7af72921, type: 3}
+  objectType: 2
+  objectName: Paper
+  ImageItem: {fileID: 21300000, guid: 1a6e1fcb9c0ee0a42a3494e0c047a2b8, type: 3}

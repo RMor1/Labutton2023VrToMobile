@@ -11,15 +11,27 @@ public class Items : ScriptableObject
 {
     public enum ItemTypes
     {
-        Key,Crowbar,Paper
+        Key, Crowbar, Paper
     }
     public ItemTypes objectType;
     public String objectName;
     public Sprite ImageItem;
-   
 
-    
-
+    public void UseItem()
+    {
+        switch (objectType)
+        {
+            case ItemTypes.Key:
+                Debug.Log("Chave usou");
+                break;
+            case ItemTypes.Crowbar:
+                Debug.Log("Crowbar usou");
+                break;
+            case ItemTypes.Paper:
+                Debug.Log("Paper usou");
+                break;
+        }
+    }
 }
 
 

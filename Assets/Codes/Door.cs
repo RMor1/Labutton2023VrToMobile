@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    
     public Transform doorMesh;
     bool closed=true;
-   
 
+    private bool moving;
    //funcao de corotina roda em paralelo com a funçao padrao da unity "update"
     public IEnumerator Abre()
     {
+        moving = true;
         float ang=0; //posicao da porta inicial
         while (ang>-148) //enquanto o angulo for menor q -148
         {
@@ -21,11 +22,13 @@ public class Door : MonoBehaviour
             yield return new WaitForEndOfFrame(); //espera o loop até o fim do update
 
         }
+        moving = false;
         closed = false; // seta a booleanada porta como aberta
     }
     //mesma coisa só q ao contrario
     public IEnumerator Fecha()
     {
+        moving  =true;
         float ang = -150;
         while (ang<0)
         {
@@ -35,21 +38,31 @@ public class Door : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
         }
-
+        moving = false;
         closed = true;
 
     }
     //chama a corotina se o jogador tiver olhando pra ela 
     public void ButtonAction()
     {
-        if (closed) //se fechada
+        if(!moving)
         {
-            StartCoroutine(Abre()); //incia a corotina de abrir 
+            if (closed) //se fechada
+            {
+                foreach (Items itemInInventory in InventaryManager.Instance.itens)
+                {
+                    if (itemInInventory.objectType.Equals(Items.ItemTypes.Key))
+                    {
+                        StartCoroutine(Abre());
+                        break;
+                    }
+                }
 
-        }
-        else
-        {
-            StartCoroutine(Fecha()); // inverso
+            }
+            else
+            {
+                StartCoroutine(Fecha()); // inverso
+            }
         }
     }
 

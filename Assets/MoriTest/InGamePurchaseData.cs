@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class InGamePurchaseData
 {
-    public bool partyMode;
+    public bool partyModeBought;
     public InGamePurchaseData(InGamePurchase dataReference)
     {
-        partyMode = dataReference.partyMode;
+        partyModeBought = dataReference.partyModeBought;
     }
     
 }

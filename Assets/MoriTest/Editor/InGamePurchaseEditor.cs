@@ -10,8 +10,8 @@ public class InGamePurchaseEditor : Editor
         InGamePurchase inGamePurchase = target as InGamePurchase;
         if(GUILayout.Button("BuyItem"))
         {
-            inGamePurchase.partyMode = true;
-            inGamePurchase.Purchase();
+            inGamePurchase.partyModeBought = true;
+            inGamePurchase.CreateSave();
         }
         if (GUILayout.Button("LoadSave"))
         {
@@ -19,8 +19,13 @@ public class InGamePurchaseEditor : Editor
         }
         if (GUILayout.Button("ResetSave"))
         {
-            inGamePurchase.partyMode = false;
-            inGamePurchase.Purchase();
+            inGamePurchase.partyModeBought = false;
+            inGamePurchase.CreateSave();
         }
+        if (GUILayout.Button("CreateSave"))
+        {
+            inGamePurchase.CreateSave();
+        }
+
     }
 }

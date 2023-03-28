@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class InGamePurchase : MonoBehaviour
 {
-    public bool partyMode;
-    public void Purchase()
+    public bool partyModeBought;
+
+    public void CreateSave()
     {
         SaveSystem.SaveStorePurchase(this);
     }
     public void LoadSaves()
     {
         InGamePurchaseData data = SaveSystem.LoadData();
-        partyMode = data.partyMode;
+        partyModeBought = data.partyModeBought;
     }
 }

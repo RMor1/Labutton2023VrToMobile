@@ -8,7 +8,7 @@ public class InGamePurchaseEditor : Editor
     {
         base.OnInspectorGUI();
         InGamePurchase inGamePurchase = target as InGamePurchase;
-        if(GUILayout.Button("BuyItem"))
+        if (GUILayout.Button("BuyItem"))
         {
             inGamePurchase.partyModeBought = true;
             inGamePurchase.CreateSave();

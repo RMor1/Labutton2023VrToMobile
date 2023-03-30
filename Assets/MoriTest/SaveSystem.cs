@@ -4,6 +4,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem : MonoBehaviour
 {
+    public static bool FileExist()
+    {
+        string path = Application.persistentDataPath + "/StoreData.info";
+        return File.Exists(path);
+    }
     public static void SaveStorePurchase(InGamePurchase inGamePurchase)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -19,7 +24,7 @@ public class SaveSystem : MonoBehaviour
     public static InGamePurchaseData LoadData()
     {
         string path = Application.persistentDataPath + "/StoreData.info";
-        if(File.Exists(path))
+        if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);

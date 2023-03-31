@@ -8,11 +8,6 @@ public class InGamePurchaseEditor : Editor
     {
         base.OnInspectorGUI();
         InGamePurchase inGamePurchase = target as InGamePurchase;
-        if (GUILayout.Button("BuyItem"))
-        {
-            inGamePurchase.partyModeBought = true;
-            inGamePurchase.CreateSave();
-        }
         if (GUILayout.Button("LoadSave"))
         {
             inGamePurchase.LoadSaves();
@@ -20,11 +15,11 @@ public class InGamePurchaseEditor : Editor
         if (GUILayout.Button("ResetSave"))
         {
             inGamePurchase.partyModeBought = false;
-            inGamePurchase.CreateSave();
+            inGamePurchase.Save();
         }
         if (GUILayout.Button("CreateSave"))
         {
-            inGamePurchase.CreateSave();
+            inGamePurchase.Save();
         }
 
     }

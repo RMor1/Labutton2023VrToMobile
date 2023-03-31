@@ -23,7 +23,7 @@ public class InGamePurchase : MonoBehaviour
     [SerializeField] private SpriteRenderer ghostVisual;
     [SerializeField] private Image ghostUI;
 
-    [Space]
+    [Space]  
 
     [SerializeField] private Sprite ghostDefault;
     [SerializeField] private Sprite ghostParty;
@@ -40,7 +40,7 @@ public class InGamePurchase : MonoBehaviour
     {
         if (!SaveSystem.FileExist())
         {
-            CreateSave();
+            Save();
         }
         else
         {
@@ -78,7 +78,7 @@ public class InGamePurchase : MonoBehaviour
             paintingGOParent.SetActive(false);
         }
     }
-    public void CreateSave()
+    public void Save()
     {
         SaveSystem.SaveStorePurchase(this);
     }
@@ -108,6 +108,6 @@ public class InGamePurchase : MonoBehaviour
                 extraAssetsBought = true;
                 break;
         }
-        CreateSave();
+        Save();
     }
 }

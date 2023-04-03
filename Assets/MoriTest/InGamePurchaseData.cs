@@ -10,7 +10,7 @@ public class InGamePurchaseData
     public bool extraAssetsBought;
 
     public bool partyModeActive;
-    public bool twoXSpeedBoughtActive;
+    public bool twoXSpeedActive;
     public bool extraAssetsActive;
     public InGamePurchaseData(InGamePurchase dataReference)
     {
@@ -19,7 +19,7 @@ public class InGamePurchaseData
         extraAssetsBought = dataReference.extraAssetsBought;
 
         partyModeActive = dataReference.partyModeActive;
-        twoXSpeedBoughtActive = dataReference.twoXSpeedBoughtActive;
+        twoXSpeedActive = dataReference.twoXSpeedActive;
         extraAssetsActive = dataReference.extraAssetsActive;
     }
 

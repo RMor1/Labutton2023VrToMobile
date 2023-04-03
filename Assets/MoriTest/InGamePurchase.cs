@@ -16,12 +16,12 @@ public class InGamePurchase : MonoBehaviour
     public bool extraAssetsBought;
 
     public bool partyModeActive;
-    public bool twoXSpeedBoughtActive;
+    public bool twoXSpeedActive;
     public bool extraAssetsActive;
 
     [Header("Party Mode")]
     [SerializeField] private SpriteRenderer ghostVisual;
-    [SerializeField] private Image ghostUI;
+    [SerializeField] private Animator ghostUI;
 
     [Space]  
 
@@ -30,8 +30,8 @@ public class InGamePurchase : MonoBehaviour
 
     [Space]
 
-    [SerializeField] private Sprite ghostDefaultUIAttack;
-    [SerializeField] private Sprite ghostPartyUIAttack;
+    [SerializeField] private RuntimeAnimatorController ghostDefaultUIAttack;
+    [SerializeField] private RuntimeAnimatorController ghostPartyUIAttack;
 
     [Header("Extra Paint Mode")]
     [SerializeField] private GameObject paintingGOParent;
@@ -53,14 +53,14 @@ public class InGamePurchase : MonoBehaviour
         if (partyModeActive)
         {
             ghostVisual.sprite = ghostParty;
-            ghostUI.sprite = ghostPartyUIAttack;
+            ghostUI.runtimeAnimatorController = ghostPartyUIAttack;
         }
         else
         {
             ghostVisual.sprite = ghostDefault;
-            ghostUI.sprite = ghostDefaultUIAttack;
+            ghostUI.runtimeAnimatorController = ghostDefaultUIAttack;
         }
-        if (twoXSpeedBoughtActive)
+        if (twoXSpeedActive)
         {
             Time.timeScale = 2;
         }
@@ -90,7 +90,7 @@ public class InGamePurchase : MonoBehaviour
         extraAssetsBought = data.extraAssetsBought;
 
         partyModeActive = data.partyModeActive;
-        twoXSpeedBoughtActive = data.twoXSpeedBoughtActive;
+        twoXSpeedActive = data.twoXSpeedActive;
         extraAssetsActive = data.extraAssetsActive;
     }
     public void Buy(int buyOptionIndex)
@@ -99,12 +99,15 @@ public class InGamePurchase : MonoBehaviour
         {
             case 0:
                 partyModeBought = true;
+                TooglePartyModeActive(true);
                 break;
             case 1:
                 twoXSpeedBought = true;
+                ToogleTwoXSpeedBoughtActive(true);
                 break;
             case 2:
                 extraAssetsBought = true;
+                ToogleExtraAssetsBought(true);
                 break;
         }
         Save();
@@ -112,14 +115,17 @@ public class InGamePurchase : MonoBehaviour
     public void TooglePartyModeActive(bool toggle)
     {
         partyModeActive = toggle;
+        UpdateActiveAddons();
     }
     public void ToogleTwoXSpeedBoughtActive(bool toggle)
     {
-        twoXSpeedBoughtActive = toggle;
+        twoXSpeedActive = toggle;
+        UpdateActiveAddons();
     }
     public void ToogleExtraAssetsBought(bool toggle)
     {
-        extraAssetsBought = toggle;
+        extraAssetsActive = toggle;
+        UpdateActiveAddons();
     }
 
 }

@@ -33,7 +33,7 @@ public class InGamePurchase : MonoBehaviour
     [SerializeField] private Sprite ghostDefaultUIAttack;
     [SerializeField] private Sprite ghostPartyUIAttack;
 
-    [Header("Party Mode")]
+    [Header("Extra Paint Mode")]
     [SerializeField] private GameObject paintingGOParent;
 
     public void Awake()
@@ -93,21 +93,33 @@ public class InGamePurchase : MonoBehaviour
         twoXSpeedBoughtActive = data.twoXSpeedBoughtActive;
         extraAssetsActive = data.extraAssetsActive;
     }
-
-    public void Buy(BuyOptions buyOption)
+    public void Buy(int buyOptionIndex)
     {
-        switch(buyOption)
+        switch(buyOptionIndex)
         {
-            case BuyOptions.PartyMode:
+            case 0:
                 partyModeBought = true;
                 break;
-            case BuyOptions.TwoXSpeed:
+            case 1:
                 twoXSpeedBought = true;
                 break;
-            case BuyOptions.ExtraAssets:
+            case 2:
                 extraAssetsBought = true;
                 break;
         }
         Save();
     }
+    public void TooglePartyModeActive(bool toggle)
+    {
+        partyModeActive = toggle;
+    }
+    public void ToogleTwoXSpeedBoughtActive(bool toggle)
+    {
+        twoXSpeedBoughtActive = toggle;
+    }
+    public void ToogleExtraAssetsBought(bool toggle)
+    {
+        extraAssetsBought = toggle;
+    }
+
 }

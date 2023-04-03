@@ -2493,7 +2493,7 @@ RectTransform:
   m_GameObject: {fileID: 315560999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 829518270}
   - {fileID: 1572501709}
@@ -3943,7 +3943,7 @@ RectTransform:
   m_GameObject: {fileID: 487221955}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 41355055}
   m_RootOrder: 1
@@ -5421,7 +5421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 786, y: 389.4}
+  m_AnchoredPosition: {x: 629, y: 315}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669321278
@@ -16014,6 +16014,12 @@ MonoBehaviour:
     type: 2}
   ghostPartyUIAttack: {fileID: 9100000, guid: 64c239283382e504692b37879366e3b6, type: 2}
   paintingGOParent: {fileID: 510610656}
+  partyModeButtonBuy: {fileID: 1023446274}
+  partyModeToggle: {fileID: 685064991}
+  twoXSpeedButtonBuy: {fileID: 594619714}
+  twoXSpeedToggle: {fileID: 831367742}
+  extraAssetsButtonBuy: {fileID: 1975926342}
+  extraAssetsToggle: {fileID: 1233145425}
 --- !u!1001 &1990892411
 PrefabInstance:
   m_ObjectHideFlags: 0

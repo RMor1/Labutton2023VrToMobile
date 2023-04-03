@@ -23,7 +23,7 @@ public class InGamePurchase : MonoBehaviour
     [SerializeField] private SpriteRenderer ghostVisual;
     [SerializeField] private Animator ghostUI;
 
-    [Space]  
+    [Space]
 
     [SerializeField] private Sprite ghostDefault;
     [SerializeField] private Sprite ghostParty;
@@ -46,6 +46,7 @@ public class InGamePurchase : MonoBehaviour
         {
             LoadSaves();
         }
+        UpdateStoreUI();
         UpdateActiveAddons();
     }
     public void UpdateActiveAddons()
@@ -95,7 +96,7 @@ public class InGamePurchase : MonoBehaviour
     }
     public void Buy(int buyOptionIndex)
     {
-        switch(buyOptionIndex)
+        switch (buyOptionIndex)
         {
             case 0:
                 partyModeBought = true;
@@ -127,5 +128,44 @@ public class InGamePurchase : MonoBehaviour
         extraAssetsActive = toggle;
         UpdateActiveAddons();
     }
+    [Space]
+    [SerializeField] private GameObject partyModeButtonBuy;
+    [SerializeField] private GameObject partyModeToggle;
+    [Space]
+    [SerializeField] private GameObject twoXSpeedButtonBuy;
+    [SerializeField] private GameObject twoXSpeedToggle;
+    [Space]
+    [SerializeField] private GameObject extraAssetsButtonBuy;
+    [SerializeField] private GameObject extraAssetsToggle;
+    public void UpdateStoreUI()
+    {
+        if (partyModeBought)
+        {
+            partyModeButtonBuy.SetActive(false);
+            partyModeToggle.SetActive(true);
+        }
+        else if (partyModeActive)
+        {
+            partyModeToggle.GetComponent<Toggle>().isOn = true;
+        }
+        if (twoXSpeedBought)
+        {
+            twoXSpeedButtonBuy.SetActive(false);
+            twoXSpeedToggle.SetActive(true);
 
+        }
+        else if (twoXSpeedActive)
+        {
+            twoXSpeedToggle.GetComponent<Toggle>().isOn = true;
+        }
+        if (extraAssetsBought)
+        {
+            extraAssetsButtonBuy.SetActive(false);
+            extraAssetsToggle.SetActive(true);
+        }
+        else if (extraAssetsActive)
+        {
+            extraAssetsToggle.GetComponent<Toggle>().isOn = true;
+        }
+    }
 }

@@ -52,7 +52,7 @@ public class RayCastCanvas : MonoBehaviour
     {
         while (true)
         {
-            alphaBg += 0.0015f;
+            alphaBg += 0.0005f;
             if (alphaBg >= 0.75f)
             {
                 alphaBg = 0.75f;
